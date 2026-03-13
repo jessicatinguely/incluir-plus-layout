@@ -1,0 +1,112 @@
+package br.com.fiap.icluirplus.screens
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import br.com.fiap.icluirplus.viewmodel.MainViewModel
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.res.painterResource
+import br.com.fiap.icluirplus.R
+import androidx.compose.ui.layout.ContentScale
+
+@Composable
+fun JobsListScreen(
+    navController: NavController,
+    viewModel: MainViewModel = viewModel()
+) {
+
+
+    val jobs by viewModel.jobs.collectAsState()
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+
+
+        Button(
+            onClick = { navController.navigate("education") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text("Dicas para conseguir emprego")
+        }
+
+        LazyColumn {
+
+            items(jobs) { job ->
+
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .fillMaxWidth()
+                        .clickable {
+                            navController.navigate("jobDetail/${job.id}")
+                        },
+                    elevation = CardDefaults.cardElevation(6.dp)
+                ) {
+
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+
+                        Text(
+                            text = job.title,
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(modifier = Modifier.height(4.dp))
+
+                        Text(
+                            text = job.company,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+
+                        Text(
+                            text = job.location,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun JobsListScreenPreview() {
+
+
+    val navController = rememberNavController()
+
+    JobsListScreen(navController = navController)
+
+
+}

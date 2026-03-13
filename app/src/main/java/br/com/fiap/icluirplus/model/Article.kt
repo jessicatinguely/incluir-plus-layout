@@ -1,0 +1,7 @@
+package br.com.fiap.icluirplus.model
+
+data class Article(
+    val id: Int,
+    val title: String,
+    val content: String
+)
