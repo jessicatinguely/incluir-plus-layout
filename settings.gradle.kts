@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "IcluirPlus"
+rootProject.name = "IncluirPlus"
 include(":app")
  

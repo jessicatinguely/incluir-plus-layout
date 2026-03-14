@@ -1,9 +1,9 @@
-package br.com.fiap.icluirplus.viewmodel
+package br.com.fiap.incluirplus.viewmodel
 
 import androidx.lifecycle.ViewModel
-import br.com.fiap.icluirplus.data.MockData
-import br.com.fiap.icluirplus.model.Article
-import br.com.fiap.icluirplus.model.Job
+import br.com.fiap.incluirplus.data.MockData
+import br.com.fiap.incluirplus.model.Article
+import br.com.fiap.incluirplus.model.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

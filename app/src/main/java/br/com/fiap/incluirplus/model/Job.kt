@@ -1,4 +1,4 @@
-package br.com.fiap.icluirplus.model
+package br.com.fiap.incluirplus.model
 
 data class Job(
     val id: Int,

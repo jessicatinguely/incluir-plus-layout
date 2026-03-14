@@ -1,4 +1,4 @@
-package br.com.fiap.icluirplus
+package br.com.fiap.incluirplus
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,19 +10,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
-import br.com.fiap.icluirplus.navigation.AppNavigation
+import br.com.fiap.incluirplus.navigation.AppNavigation
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.ui.Alignment
+import br.com.fiap.incluirplus.R
+
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {

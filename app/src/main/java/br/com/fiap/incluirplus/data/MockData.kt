@@ -1,7 +1,7 @@
-package br.com.fiap.icluirplus.data
+package br.com.fiap.incluirplus.data
 
-import br.com.fiap.icluirplus.model.Article
-import br.com.fiap.icluirplus.model.Job
+import br.com.fiap.incluirplus.model.Article
+import br.com.fiap.incluirplus.model.Job
 
 object MockData {
     val jobs = listOf(

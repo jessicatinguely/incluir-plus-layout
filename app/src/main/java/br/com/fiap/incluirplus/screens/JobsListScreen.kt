@@ -1,20 +1,17 @@
-package br.com.fiap.icluirplus.screens
+package br.com.fiap.incluirplus.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,16 +23,16 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.icluirplus.viewmodel.MainViewModel
+import br.com.fiap.incluirplus.viewmodel.MainViewModel
 
 @Composable
-fun EducationScreen(
+fun JobsListScreen(
     navController: NavController,
     viewModel: MainViewModel = viewModel()
 ) {
 
 
-    val articles by viewModel.articles.collectAsState()
+    val jobs by viewModel.jobs.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -43,12 +40,15 @@ fun EducationScreen(
 
         LazyColumn {
 
-            items(articles) { article ->
+            items(jobs) { job ->
 
                 Card(
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .clickable {
+                            navController.navigate("jobDetail/${job.id}")
+                        },
                     elevation = CardDefaults.cardElevation(6.dp)
                 ) {
 
@@ -57,26 +57,24 @@ fun EducationScreen(
                     ) {
 
                         Text(
-                            text = article.title,
+                            text = job.title,
                             style = MaterialTheme.typography.titleLarge
                         )
 
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(4.dp))
 
                         Text(
-                            text = article.content,
+                            text = job.company,
                             style = MaterialTheme.typography.bodyMedium
                         )
 
+                        Text(
+                            text = job.location,
+                            style = MaterialTheme.typography.bodySmall
+                        )
                     }
-
                 }
-
             }
-
-        }
-        IconButton(onClick = { navController.popBackStack() }) {
-            Icon(Icons.Default.ArrowBack, contentDescription = "Voltar")
         }
     }
 
@@ -85,12 +83,12 @@ fun EducationScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun EducationScreenPreview() {
+fun JobsListScreenPreview() {
 
 
     val navController = rememberNavController()
 
-    EducationScreen(navController = navController)
+    JobsListScreen(navController = navController)
 
 
 }

@@ -1,4 +1,4 @@
-package br.com.fiap.icluirplus
+package br.com.fiap.incluirplus
 
 import org.junit.Test
 

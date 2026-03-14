@@ -1,18 +1,19 @@
-package br.com.fiap.icluirplus.screens
+package br.com.fiap.incluirplus.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,49 +25,29 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.icluirplus.viewmodel.MainViewModel
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.size
-import androidx.compose.ui.res.painterResource
-import br.com.fiap.icluirplus.R
-import androidx.compose.ui.layout.ContentScale
+import br.com.fiap.incluirplus.viewmodel.MainViewModel
 
 @Composable
-fun JobsListScreen(
+fun EducationScreen(
     navController: NavController,
     viewModel: MainViewModel = viewModel()
 ) {
 
 
-    val jobs by viewModel.jobs.collectAsState()
+    val articles by viewModel.articles.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
 
-
-        Button(
-            onClick = { navController.navigate("education") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
-            Text("Dicas para conseguir emprego")
-        }
-
         LazyColumn {
 
-            items(jobs) { job ->
+            items(articles) { article ->
 
                 Card(
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
-                        .fillMaxWidth()
-                        .clickable {
-                            navController.navigate("jobDetail/${job.id}")
-                        },
+                        .fillMaxWidth(),
                     elevation = CardDefaults.cardElevation(6.dp)
                 ) {
 
@@ -75,25 +56,25 @@ fun JobsListScreen(
                     ) {
 
                         Text(
-                            text = job.title,
+                            text = article.title,
                             style = MaterialTheme.typography.titleLarge
                         )
 
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
 
                         Text(
-                            text = job.company,
+                            text = article.content,
                             style = MaterialTheme.typography.bodyMedium
                         )
 
-                        Text(
-                            text = job.location,
-                            style = MaterialTheme.typography.bodySmall
-                        )
                     }
+
                 }
+
             }
+
         }
+
     }
 
 
@@ -101,12 +82,12 @@ fun JobsListScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun JobsListScreenPreview() {
+fun EducationScreenPreview() {
 
 
     val navController = rememberNavController()
 
-    JobsListScreen(navController = navController)
+    EducationScreen(navController = navController)
 
 
 }
